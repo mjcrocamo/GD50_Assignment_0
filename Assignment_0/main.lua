@@ -241,6 +241,17 @@ function love.update(dt)
         player1.dy = 0
     end
 
+    -- Make the second paddle controlled by the computer
+
+    -- If the corner of ball is below the corner of paddle, and the paddle position isn't
+      -- overlapping/lined-up with the position of the ball
+      -- move the paddle downwards towards the position of the ball
+
+      -- If the corner of ball is above the corner of paddle, and the paddle position isn't
+        -- overlapping/lined-up with the position of the ball
+        -- move the paddle upwards towards the position of the ball
+      -- else, stop the movement of the paddle and wait for the ball to hit it
+
     if gameState == "play" then
       if ball.y > player2.y and (ball.y > player2.y + player2.height or player2.y > ball.y + ball.height) then
         player2.dy = PADDLE_SPEED * .75
@@ -252,6 +263,7 @@ function love.update(dt)
 
     end
 
+    -- If someone scores and the gamestate is in serve, stop the paddle movement
     if gameState == "serve" then
       player2.dy = 0
     end
